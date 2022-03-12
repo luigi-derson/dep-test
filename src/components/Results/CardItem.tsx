@@ -1,5 +1,6 @@
 import dayjs from "dayjs";
 import relativeTime from "dayjs/plugin/relativeTime";
+import { MdClose } from "react-icons/md";
 import styled from "styled-components";
 import { ResultType, useResultsContext } from "../../context/ResultsContext";
 
@@ -15,6 +16,11 @@ const StyledCard = styled.div`
   font-size: 0.875rem;
   background: white;
   margin-top: 1rem;
+
+  @media screen and (min-width: 768px) {
+    max-width: 340px;
+    flex-grow: 1;
+  }
 `;
 
 const StyledButton = styled.button`
@@ -25,6 +31,12 @@ const StyledButton = styled.button`
   appearance: none;
   border: none;
   padding: 1rem;
+  font-size: 1.5rem;
+  cursor: pointer;
+
+  &:hover {
+    color: red;
+  }
 `;
 
 const StyledTime = styled.time`
@@ -67,7 +79,7 @@ export default function CardItem({
   return (
     <StyledCard>
       <StyledButton type="button" onClick={handleOnClickRemove}>
-        X
+        <MdClose />
       </StyledButton>
       <StyledTime>updated {dayjs(updatedAt).from(dayjs())}</StyledTime>
       <StyledLocation>{locationName}</StyledLocation>

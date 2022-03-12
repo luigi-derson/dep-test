@@ -1,7 +1,9 @@
-import React, { useMemo, useState } from "react";
+import React, { Fragment, useMemo, useState } from "react";
 import AutocompleteOptions from "./AutocompleteOptions";
 import { filterListByQuery } from "../../utils/filter";
 import styled from "styled-components";
+
+import { MdSearch } from "react-icons/md";
 
 const StyledSearchInput = styled.input`
   width: 100%;
@@ -10,7 +12,7 @@ const StyledSearchInput = styled.input`
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   padding-right: 0.5rem;
-  padding-left: 2rem;
+  padding-left: 2.5rem;
   font-size: 1rem;
   font-family: inherit;
 
@@ -20,8 +22,20 @@ const StyledSearchInput = styled.input`
   }
 `;
 
+const StyledIcon = styled.div`
+  position: absolute;
+  color: lightgray;
+  font-size: 1.5rem;
+  display: flex;
+  width: 2.5rem;
+  height: 100%;
+  align-items: center;
+  justify-content: center;
+`;
+
 const StyledAutocomplete = styled.div`
   position: relative;
+  margin-top: 2.5rem;
 `;
 
 interface SearchFormProps {
@@ -43,20 +57,25 @@ export default function SearchForm({ options = [] }: SearchFormProps) {
   ]);
 
   return (
-    <StyledAutocomplete>
-      <StyledSearchInput
-        role="searchbox"
-        type="text"
-        name="city"
-        placeholder="Enter city name..."
-        value={query}
-        onChange={handleOnChangeQuery}
-        autoComplete="off"
-      />
+    <Fragment>
+      <StyledAutocomplete>
+        <StyledIcon>
+          <MdSearch />
+        </StyledIcon>
 
+        <StyledSearchInput
+          role="searchbox"
+          type="text"
+          name="city"
+          placeholder="Enter city name..."
+          value={query}
+          onChange={handleOnChangeQuery}
+          autoComplete="off"
+        />
+      </StyledAutocomplete>
       {query && matchedOptions.length > 0 && (
         <AutocompleteOptions options={matchedOptions} />
       )}
-    </StyledAutocomplete>
+    </Fragment>
   );
 }
