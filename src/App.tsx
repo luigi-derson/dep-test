@@ -1,27 +1,26 @@
-import "./styles.css";
-import { title, description } from "./_mocks";
+import { title, firstLine, secondLine } from "./_mocks";
 import { ResultsProvider } from "./context/ResultsContext";
 import Autocomplete from "./components/Autocomplete";
 import SearchResults from "./components/Results";
+import { GlobalStyle, Container, Title, Text } from "./components/Layout";
 import useCities from "./hooks/useCities";
 
 export default function App() {
   const cities = useCities();
 
   return (
-    <div className="App">
-      <h1>{title}</h1>
-      <p>{description}</p>
+    <Container>
+      <GlobalStyle />
+
+      <Title>{title}</Title>
+      <Text>{firstLine}</Text>
+      <Text>{secondLine}</Text>
 
       <ResultsProvider>
-        <div>
-          <Autocomplete options={cities} />
-        </div>
+        <Autocomplete options={cities} />
 
-        <div>
-          <SearchResults />
-        </div>
+        <SearchResults />
       </ResultsProvider>
-    </div>
+    </Container>
   );
 }
