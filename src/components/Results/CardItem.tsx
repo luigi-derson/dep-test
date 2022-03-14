@@ -45,7 +45,7 @@ const StyledTime = styled.time`
   font-size: 0.7rem;
 `;
 
-const StyledLocation = styled.div`
+const StyledLocation = styled.h2`
   color: purple;
   font-size: 1rem;
   padding: 0.5rem 0;
@@ -77,16 +77,18 @@ export default function CardItem({
     removeResult(id);
   };
   return (
-    <StyledCard>
+    <StyledCard role="listitem">
       <StyledButton type="button" onClick={handleOnClickRemove}>
         <MdClose />
       </StyledButton>
-      <StyledTime>updated {dayjs(updatedAt).from(dayjs())}</StyledTime>
+      <StyledTime dateTime={updatedAt} data-testid="time-from-now">
+        updated {dayjs(updatedAt).from(dayjs())}
+      </StyledTime>
       <StyledLocation>{locationName}</StyledLocation>
       <StyledCountry>
         in {city}, {country}
       </StyledCountry>
-      <StyledParameters>
+      <StyledParameters data-testid="location-values">
         <span>Values: </span>
         {parameters.map(({ name, value, id }, idx) => (
           <StyledValue key={id}>

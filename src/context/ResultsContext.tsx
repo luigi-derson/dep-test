@@ -9,13 +9,13 @@ import { getLocationByCity } from "../api";
 
 type ParameterType = {
   id: number;
-  value: string;
+  value: number;
   name: string;
 };
 
 export type ResultType = {
   id: number;
-  updatedAt: Date;
+  updatedAt: string;
   locationName: string;
   city: string;
   country: string;
@@ -28,12 +28,7 @@ interface IResultsContext {
   removeResult: (id: number) => void;
 }
 
-// const initialState = {
-//   results: [],
-//   addNewResult: async(s:string) => {}
-// };
-
-const ResultsContext = createContext({} as IResultsContext);
+export const ResultsContext = createContext({} as IResultsContext);
 
 interface IResultsProvider {
   children: React.ReactNode;
@@ -73,7 +68,7 @@ export const ResultsProvider = ({ children }: IResultsProvider) => {
 export const useResultsContext = () => {
   const context = useContext(ResultsContext);
   if (context === undefined) {
-    throw new Error(`useLayout must be used within a LayoutProvider`);
+    throw new Error(`useResultsContext must be used within a ResultsProvider`);
   }
   return context;
 };

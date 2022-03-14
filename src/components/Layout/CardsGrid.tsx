@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const CardsGrid = styled.div`
+export const CardsGrid = styled.section`
   display: flex;
   flex-direction: column;
 

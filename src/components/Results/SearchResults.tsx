@@ -5,7 +5,7 @@ import CardItem from "./CardItem";
 export default function SearchResults() {
   const { results } = useResultsContext();
   return (
-    <CardsGrid>
+    <CardsGrid role="list">
       {results.map((result) => {
         return <CardItem key={result.id} {...result} />;
       })}
